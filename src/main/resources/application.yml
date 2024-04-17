@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: register-user
+  datasource:
+    url: jdbc:postgresql://localhost:5432/teste-tecnico
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          delimiter: ";"
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: update
+    sql:
+      init:
+        mode: always
+clients:
+  cors:
+    allowed:
+      origins: "http://localhost:4200"
+      headers: "*"
