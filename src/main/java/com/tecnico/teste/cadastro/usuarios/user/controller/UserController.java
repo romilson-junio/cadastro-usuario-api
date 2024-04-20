@@ -2,7 +2,7 @@ package com.tecnico.teste.cadastro.usuarios.user.controller;
 
 import com.tecnico.teste.cadastro.usuarios.user.dto.UserDTO;
 import com.tecnico.teste.cadastro.usuarios.user.dto.UserUpdateDTO;
-import com.tecnico.teste.cadastro.usuarios.user.service.UserService;
+import com.tecnico.teste.cadastro.usuarios.user.service.UserServiceManager;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceManager userService;
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> findAll() {

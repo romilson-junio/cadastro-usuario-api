@@ -4,9 +4,9 @@ import com.tecnico.teste.cadastro.usuarios.user.dto.UserDTO;
 import com.tecnico.teste.cadastro.usuarios.user.dto.UserUpdateDTO;
 import com.tecnico.teste.cadastro.usuarios.user.entity.User;
 
-public interface UserMapper {
+public class UserMapper {
 
-    static User entity(UserDTO dto) {
+    public static User entity(UserDTO dto) {
         User user = new User();
         user.setId(dto.getId());
         user.setName(dto.getName());
@@ -15,7 +15,7 @@ public interface UserMapper {
         return user;
     }
 
-    static UserDTO dto(User entity) {
+    public static UserDTO dto(User entity) {
         return UserDTO.builder()
                 .id(entity.getId())
                 .name(entity.getName())
@@ -23,11 +23,11 @@ public interface UserMapper {
                 .build();
     }
 
-    static void merge(User entity, UserUpdateDTO dto) {
+    public static void merge(User entity, UserUpdateDTO dto) {
         entity.setName(dto.getName());
     }
 
-    static void update(User entity, UserDTO dto) {
+    public static void update(User entity, UserDTO dto) {
         entity.setName(dto.getName());
     }
 }
