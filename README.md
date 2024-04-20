@@ -1,6 +1,6 @@
 # CadastroUsuarioApi
 
-## Pré-requisitos
+## Prerequisites
 - [Docker](https://get.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/install/#install-compose)
 - [JDK-21](https://jdk.java.net/21/)
@@ -14,6 +14,6 @@ You can run application using:
 ./mvnw spring-boot:run
 ```
 
-A API será disponibilizada em: http://localhost:8080
+The API will be made available on: http://localhost:8080
 ####
-Para consultar a documentação: http://localhost:8080/swagger-ui/index.html
+To consult the documentation: http://localhost:8080/swagger-ui/index.html
