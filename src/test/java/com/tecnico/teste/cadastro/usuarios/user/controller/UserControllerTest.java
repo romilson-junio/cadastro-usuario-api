@@ -2,8 +2,8 @@ package com.tecnico.teste.cadastro.usuarios.user.controller;
 
 import com.tecnico.teste.cadastro.usuarios.user.dto.UserDTO;
 import com.tecnico.teste.cadastro.usuarios.user.dto.UserUpdateDTO;
-import com.tecnico.teste.cadastro.usuarios.user.mocks.dto.UserDTOMock;
-import com.tecnico.teste.cadastro.usuarios.user.mocks.dto.UserUpdateDTOMock;
+import com.tecnico.teste.cadastro.usuarios.user.mocks.dto.UserMockDTO;
+import com.tecnico.teste.cadastro.usuarios.user.mocks.dto.UserUpdateMockDTO;
 import com.tecnico.teste.cadastro.usuarios.user.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,7 +31,7 @@ class UserControllerTest {
 
     @Test
     void should_findAll() {
-        List<UserDTO> users = List.of(UserDTOMock.builder().fromsave().build());
+        List<UserDTO> users = List.of(UserMockDTO.builder().fromSave().build());
         doReturn(users).when(userService).findAll();
 
         final ResponseEntity<List<UserDTO>> response = userController.findAll();
@@ -49,7 +49,7 @@ class UserControllerTest {
 
     @Test
     void should_findById() {
-        UserDTO user = UserDTOMock.builder().fromsave().build();
+        UserDTO user = UserMockDTO.builder().fromSave().build();
         doReturn(user).when(userService).findById(anyLong());
 
         final ResponseEntity<UserDTO> response = userController.findById(1L);
@@ -65,8 +65,8 @@ class UserControllerTest {
 
     @Test
     void should_save() {
-        UserDTO dto = UserDTOMock.builder().toSave().build();
-        UserDTO user = UserDTOMock.builder().fromsave().build();
+        UserDTO dto = UserMockDTO.builder().toSave().build();
+        UserDTO user = UserMockDTO.builder().fromSave().build();
         doReturn(user).when(userService).save(any());
 
         final ResponseEntity<UserDTO> response = userController.save(dto);
@@ -83,7 +83,7 @@ class UserControllerTest {
     @Test
     void should_update() {
 
-        UserDTO update = UserDTOMock.builder().withName("Teste Update").build();
+        UserDTO update = UserMockDTO.builder().withName("Teste Update").build();
         doReturn(update).when(userService).update(any(), anyLong());
 
         final ResponseEntity<UserDTO> response = userController.update(update.getId(), update);
@@ -99,8 +99,8 @@ class UserControllerTest {
 
     @Test
     void should_merge() {
-        UserUpdateDTO merge = UserUpdateDTOMock.builder().withName("Teste Merge").build();
-        UserDTO dto = UserDTOMock.builder().withName("Teste Merge").build();
+        UserUpdateDTO merge = UserUpdateMockDTO.builder().withName("Teste Merge").build();
+        UserDTO dto = UserMockDTO.builder().withName("Teste Merge").build();
         doReturn(dto).when(userService).merge(any(), anyLong());
 
         final ResponseEntity<UserDTO> response = userController.merge(merge.getId(), merge);
@@ -115,7 +115,7 @@ class UserControllerTest {
 
     @Test
     void should_delete() {
-        UserDTO dto = UserDTOMock.builder().fromsave().build();
+        UserDTO dto = UserMockDTO.builder().fromSave().build();
         doNothing().when(userService).delete(any());
 
         final ResponseEntity<HttpStatus> response = userController.delete(dto);

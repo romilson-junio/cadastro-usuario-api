@@ -5,22 +5,17 @@ import com.tecnico.teste.cadastro.usuarios.user.dto.UserDTO;
 import com.tecnico.teste.cadastro.usuarios.user.dto.UserUpdateDTO;
 import com.tecnico.teste.cadastro.usuarios.user.entity.User;
 import com.tecnico.teste.cadastro.usuarios.user.mocks.UserMock;
-import com.tecnico.teste.cadastro.usuarios.user.mocks.dto.UserDTOMock;
-import com.tecnico.teste.cadastro.usuarios.user.mocks.dto.UserUpdateDTOMock;
+import com.tecnico.teste.cadastro.usuarios.user.mocks.dto.UserMockDTO;
+import com.tecnico.teste.cadastro.usuarios.user.mocks.dto.UserUpdateMockDTO;
 import com.tecnico.teste.cadastro.usuarios.user.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +42,7 @@ class UserServiceTest {
         doReturn(user).when(userRepository).save(any());
         doReturn(Boolean.FALSE).when(userRepository).existsByEmail(anyString());
 
-        UserDTO dto = UserDTOMock.builder().toSave().build();
+        UserDTO dto = UserMockDTO.builder().toSave().build();
         final UserDTO save = userService.save(dto);
 
         assertNotNull(save);
@@ -65,7 +60,7 @@ class UserServiceTest {
     void should_saveUserThrow() {
         doReturn(Boolean.TRUE).when(userRepository).existsByEmail(anyString());
 
-        UserDTO dto = UserDTOMock.builder().toSave().build();
+        UserDTO dto = UserMockDTO.builder().toSave().build();
 
         WebApplicationException exception = assertThrows(WebApplicationException.class, () -> userService.save(dto));
 
@@ -83,7 +78,7 @@ class UserServiceTest {
         doReturn(Optional.of(user)).when(userRepository).findById(anyLong());
         doReturn(user).when(userRepository).save(any());
 
-        UserDTO dto = UserDTOMock.builder().fromsave().build();
+        UserDTO dto = UserMockDTO.builder().fromSave().build();
         final UserDTO update = userService.update(dto, 1L);
 
         assertNotNull(update);
@@ -103,7 +98,7 @@ class UserServiceTest {
         doReturn(Optional.of(user)).when(userRepository).findById(anyLong());
         doReturn(user).when(userRepository).save(any());
 
-        UserUpdateDTO dto = UserUpdateDTOMock.builder().dto().build();
+        UserUpdateDTO dto = UserUpdateMockDTO.builder().dto().build();
         final UserDTO merge = userService.merge(dto, 1L);
 
         assertNotNull(merge);
@@ -144,7 +139,7 @@ class UserServiceTest {
     @Test
     void should_deleteUserSuccessfully() {
 
-        UserDTO user = UserDTOMock.builder().fromsave().build();
+        UserDTO user = UserMockDTO.builder().fromSave().build();
 
         doReturn(Boolean.TRUE).when(userRepository).existsById(anyLong());
         doNothing().when(userRepository).delete(any());
@@ -158,7 +153,7 @@ class UserServiceTest {
     @Test
     void should_deleteUserThrow() {
 
-        UserDTO user = UserDTOMock.builder().fromsave().build();
+        UserDTO user = UserMockDTO.builder().fromSave().build();
 
         doReturn(Boolean.FALSE).when(userRepository).existsById(anyLong());
 

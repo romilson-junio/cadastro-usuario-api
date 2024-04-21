@@ -1,21 +1,20 @@
 package com.tecnico.teste.cadastro.usuarios.user.mocks.dto;
 
 import com.tecnico.teste.cadastro.usuarios.user.dto.UserDTO;
-import com.tecnico.teste.cadastro.usuarios.user.entity.User;
 
-public class UserDTOMock {
+public class UserMockDTO {
 
-    private static UserDTOMock builder;
+    private static UserMockDTO builder;
 
     private static UserDTO bean;
 
-    public static UserDTOMock builder() {
-        builder = new UserDTOMock();
+    public static UserMockDTO builder() {
+        builder = new UserMockDTO();
         bean = UserDTO.builder().build();
         return builder;
     }
 
-    public UserDTOMock toSave() {
+    public UserMockDTO toSave() {
         bean.setId(null);
         bean.setName("Teste");
         bean.setEmail("teste@gmail.com");
@@ -24,7 +23,7 @@ public class UserDTOMock {
         return builder;
     }
 
-    public UserDTOMock fromsave() {
+    public UserMockDTO fromSave() {
         bean.setId(1L);
         bean.setName("Teste");
         bean.setEmail("teste@gmail.com");
@@ -32,7 +31,7 @@ public class UserDTOMock {
         return builder;
     }
 
-    public UserDTOMock withName(String name) {
+    public UserMockDTO withName(String name) {
         bean.setId(1L);
         bean.setName(name);
         bean.setEmail("teste@gmail.com");

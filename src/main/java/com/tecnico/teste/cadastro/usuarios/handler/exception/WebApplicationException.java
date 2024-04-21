@@ -13,8 +13,4 @@ public class WebApplicationException extends RuntimeException {
         this.status = status;
     }
 
-    public WebApplicationException(String message) {
-        super(message);
-        this.status = HttpStatus.BAD_REQUEST;
-    }
 }

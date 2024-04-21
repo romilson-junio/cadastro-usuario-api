@@ -1,6 +1,5 @@
 package com.tecnico.teste.cadastro.usuarios.user.annotations.validator;
 
-
 import com.tecnico.teste.cadastro.usuarios.user.annotations.PasswordConfirmation;
 import com.tecnico.teste.cadastro.usuarios.user.dto.UserDTO;
 import jakarta.validation.ConstraintValidator;
